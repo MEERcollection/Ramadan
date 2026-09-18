@@ -1,213 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erbil Ramadan 2026</title>
-    <style>
-        :root {
-            --navy: #0f172a;
-            --card-bg: #1e293b;
-            --gold: #fbbf24;
-            --text-gray: #94a3b8;
-        }
-
-        body { font-family: 'Segoe UI', sans-serif; background: var(--navy); color: white; margin: 0; padding: 15px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 15px; }
-
-        .lang-switcher { display: flex; gap: 5px; justify-content: flex-end; }
-        .lang-btn { background: #334155; border: none; color: white; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; }
-        .lang-btn.active { background: var(--gold); color: black; font-weight: bold; }
-
-        .card { background: var(--card-bg); padding: 20px; border-radius: 20px; border: 1px solid rgba(251, 191, 36, 0.2); }
-        .card-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: var(--gold); display: flex; align-items: center; gap: 10px; }
-        
-        .timer-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .clock { font-size: 1.8rem; font-weight: bold; font-family: monospace; }
-        .badge { background: var(--gold); color: black; padding: 5px 12px; border-radius: 10px; font-size: 0.85rem; font-weight: bold; }
-
-        .progress-bg { background: #0f172a; height: 12px; border-radius: 6px; overflow: hidden; margin: 12px 0; }
-        .progress-fill { background: linear-gradient(90deg, #f59e0b, #fbbf24); height: 100%; width: 0%; transition: 1s; }
-
-        .prayer-auto-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .prayer-status { padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; font-size: 0.9rem; display: flex; justify-content: space-between; border: 1px solid rgba(255,255,255,0.05); }
-        .status-done { color: #22c55e; font-weight: bold; }
-
-        .dua-box { border-left: 3px solid var(--gold); padding-left: 15px; line-height: 1.6; }
-        .rtl { direction: rtl; text-align: right; border-left: none; border-right: 3px solid var(--gold); padding-right: 15px; }
-        .dynamic-meta { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Recharge Demo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">ENG</button>
-        <button class="lang-btn" onclick="setLang('ku')">KUR</button>
-        <button class="lang-btn" onclick="setLang('ar')">ARA</button>
+<header>
+  <div class="logo">
+    <div class="logo-icon">♪</div>
+    <span>ClipTok</span>
+    <small>DEMO</small>
+  </div>
+
+  <div class="search">
+    <input type="text" placeholder="Search">
+    <span>⌕</span>
+  </div>
+
+  <div class="header-right">
+    <button class="upload">＋ Upload</button>
+    <span class="header-icon">✈</span>
+
+    <div class="message-icon">
+      ▢
+      <div class="notification">2</div>
     </div>
 
-    <div class="card">
-        <div class="timer-row">
-            <div id="date-label" style="color: var(--text-gray);">--</div>
-            <div id="live-clock" class="clock">00:00:00 PM</div>
-        </div>
-        <div style="display: flex; gap: 10px;">
-            <div id="iftar-timer" class="badge" style="display:none;"></div>
-            <div id="countdown-badge" class="badge">--</div>
-        </div>
+    <div class="profile-circle"></div>
+  </div>
+</header>
+
+
+<main>
+
+  <section class="card">
+
+    <div class="title-row">
+      <h1>Get Coins</h1>
+
+      <button class="history-btn" onclick="openHistory()">
+        View transaction history
+      </button>
     </div>
 
-    <div class="card">
-        <div class="card-title">📖 <span id="t-quran">Quran Progress</span></div>
-        <div style="display: flex; justify-content: space-between;">
-            <span id="t-pages">Pages Read</span>
-            <span><strong id="pages-count">0</strong> / 604</span>
+
+    <div class="account-section">
+
+      <div class="account">
+
+        <div class="avatar"></div>
+
+        <div>
+          <div class="username">secretttttyyyy...</div>
+
+          <div class="balance">
+            <span class="mini-coin">♪</span>
+            <span id="currentBalance">0</span>
+          </div>
         </div>
-        <div class="progress-bg"><div id="q-bar" class="progress-fill"></div></div>
-        <p id="quran-message" style="font-size: 0.75rem; color: var(--gold); margin: 0;"></p>
+
+      </div>
+
+
+      <div class="invite">
+        <strong>Invite & Get Rewards ›</strong>
+
+        <div>
+          7ZWJC8BZ
+          <button class="copy" onclick="copyCode()">▢</button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="card">
-        <div class="card-title">✅ <span id="t-worship">Daily Worship (Auto)</span></div>
-        <div class="prayer-auto-list" id="prayer-list"></div>
+
+    <div class="recharge-title">
+      Recharge:
+      <span>Save around 25% with a lower service fee.</span>
+      ⓘ
     </div>
 
-    <div class="card">
-        <div class="card-title">✨ <span id="dynamic-title">Daily Wisdom</span></div>
-        <div id="dua-container" class="dua-box">
-            <div id="display-quran" style="margin-bottom:12px; font-weight: 500; color: #fff;"></div>
-            <div id="display-quote" style="font-style: italic; color: var(--text-gray); font-size: 0.95rem;"></div>
+
+    <div class="coin-grid">
+
+      <button class="coin-card"
+              data-coins="30"
+              data-price="0.31"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 30
         </div>
+        <div class="price">$0.31</div>
+      </button>
+
+
+      <button class="coin-card"
+              data-coins="100"
+              data-price="1.05"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 100
+        </div>
+        <div class="price">$1.05</div>
+      </button>
+
+
+      <button class="coin-card"
+              data-coins="200"
+              data-price="2.09"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 200
+        </div>
+        <div class="price">$2.09</div>
+      </button>
+
+
+      <button class="coin-card"
+              data-coins="350"
+              data-price="3.65"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 350
+        </div>
+        <div class="price">$3.65</div>
+      </button>
+
+
+      <button class="coin-card"
+              data-coins="500"
+              data-price="5.19"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 500
+        </div>
+        <div class="price">$5.19</div>
+      </button>
+
+
+      <button class="coin-card selected"
+              data-coins="1000"
+              data-price="10.39"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 1,000
+        </div>
+        <div class="price">$10.39</div>
+      </button>
+
+
+      <button class="coin-card"
+              data-coins="17500"
+              data-price="181.35"
+              onclick="selectPackage(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> 17,500
+        </div>
+        <div class="price">$181.35</div>
+      </button>
+
+
+      <button class="coin-card custom"
+              onclick="customCoins(this)">
+        <div class="coin-number">
+          <span class="coin">♪</span> Custom
+        </div>
+
+        <div class="price">
+          Large amount supported
+        </div>
+      </button>
+
     </div>
+
+
+    <div class="special-header">
+      <strong>Special offer ⓘ</strong>
+
+      <span>
+        5% cash back on your next order
+      </span>
+    </div>
+
+
+    <div class="offer">
+
+      <div class="five">
+        5<sup>%</sup>
+      </div>
+
+      <div class="offer-text">
+
+        <strong>
+          Recharge once to unlock 5% cash back up to USD250
+          on your next order
+        </strong>
+
+        <small>
+          From Invite & Get Rewards ›
+          &nbsp;&nbsp;
+          Default invitation code applied.
+          Change code ✎
+        </small>
+
+      </div>
+
+      <div class="check">✓</div>
+
+    </div>
+
+
+    <div class="payment">
+
+      <div class="payment-method">
+        Payment method
+
+        <span class="payment-logo">VISA</span>
+        <span class="payment-logo">MC</span>
+        <span class="payment-logo">DISC</span>
+      </div>
+
+
+      <div class="total">
+        Total
+        <strong id="totalPrice">$10.39</strong>
+      </div>
+
+
+      <button class="recharge-button" onclick="recharge()">
+        Recharge
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<div id="historyModal" class="modal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeHistory()">×</button>
+
+    <h2>Transaction History</h2>
+
+    <div id="historyContent">
+      <p>No demo transactions yet.</p>
+    </div>
+
+  </div>
+
 </div>
 
-<script>
-    const ramadanStart = new Date("2026-02-18T00:00:00");
-    let currentLang = 'en';
 
-    const translations = {
-        en: { quran: "Quran Progress", pages: "Pages Read", worship: "Daily Worship (Auto)", done: "Done", countdown: "Days to Ramadan", fasting: "Day of Fasting", startSoon: "Tracking starts on Day 1", wisdom: "Daily Wisdom" },
-        ku: { quran: "پێشکەوتنی قورئان", pages: "لاپەڕەکان", worship: "عیبادەت (خۆکار)", done: "تەواو", countdown: "ڕۆژ بۆ ڕەمەزان", fasting: "ڕۆژی بەڕۆژوو", startSoon: "لە ڕۆژی ١ دەستپێدەکات", wisdom: "وتەی ڕۆژ" },
-        ar: { quran: "ختم القرآن", pages: "الصفحات", worship: "العبادات (تلقائي)", done: "تم", countdown: "يوم لرمضان", fasting: "أيام الصيام", startSoon: "يبدأ في اليوم الأول", wisdom: "حكمة اليوم" }
-    };
+<div id="confirmationModal" class="modal">
 
-    // 6-Hour Rotation Content (Changes at 12AM, 6AM, 12PM, 6PM)
-    const dailyWisdom = [
-        { 
-            q: { en: "Indeed, with hardship comes ease. (94:6)", ku: "بەڕاستی لەگەڵ هەر تەنگانەیەکدا خۆشییەک هەیە.", ar: "فإن مع العسر يسراً" },
-            m: { en: "Your strength is growing with every hour of patience.", ku: "هێزت زیاد دەکات لەگەڵ هەموو کاتژمێرێکی ئارامگرتن.", ar: "قوتك تزداد مع كل ساعة صبر." }
-        },
-        { 
-            q: { en: "And seek help through patience and prayer. (2:45)", ku: "داوای یارمەتی بکەن بە ئارامگرتن و نوێژکردن.", ar: "واستعينوا بالصبر والصلاة" },
-            m: { en: "A quiet heart is the best companion for a fasting soul.", ku: "دڵێکی ئارام باشترین هاوەڵە بۆ ڕۆژووەوان.", ar: "القلب الهادئ هو أفضل رفيق للصائم." }
-        },
-        { 
-            q: { en: "He is with you wherever you are. (57:4)", ku: "خودا لەگەڵتانە لە هەر شوێنێک بن.", ar: "وهو معكم أينما كنتم" },
-            m: { en: "You are never alone in your hunger or your prayers.", ku: "تۆ هەرگیز تەنها نیت لە برسییەتی و دوعاکانتدا.", ar: "لست وحدك أبداً في جوعك وصلاتك." }
-        },
-        { 
-            q: { en: "So remember Me; I will remember you. (2:152)", ku: "یادم بکەن، یادتان دەکەم.", ar: "فاذكروني أذكركم" },
-            m: { en: "The night is for reflection and the day for discipline.", ku: "شەو بۆ تێڕامانە و ڕۆژ بۆ خۆڕاگری.", ar: "الليل للتفكر والنهار للانضباط." }
-        }
-    ];
+  <div class="modal-box confirmation">
 
-    const prayers = [
-        { id: 'fajr', name: { en: 'Fajr', ku: 'بەیانی', ar: 'الفجر' }, time: "05:22 AM", military: "05:22" },
-        { id: 'dhuhr', name: { en: 'Dhuhr', ku: 'نیوەڕۆ', ar: 'الظهر' }, time: "12:18 PM", military: "12:18" },
-        { id: 'asr', name: { en: 'Asr', ku: 'عەسر', ar: 'العصر' }, time: "03:14 PM", military: "15:14" },
-        { id: 'maghrib', name: { en: 'Maghrib', ku: 'ئێوارە', ar: 'المغرب' }, time: "05:48 PM", military: "17:48" },
-        { id: 'isha', name: { en: 'Isha', ku: 'خەوتنان', ar: 'العشاء' }, time: "07:04 PM", military: "19:04" }
-    ];
+    <button class="close" onclick="closeConfirmation()">×</button>
 
-    function update() {
-        const now = new Date();
-        
-        // 12-Hour Clock
-        document.getElementById('live-clock').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        document.getElementById('date-label').innerText = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+    <div class="success-icon">✓</div>
 
-        const milTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
-        const diffMs = ramadanStart - now;
-        const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-        const isRamadan = diffMs <= 0;
+    <h2>Demo Recharge Complete</h2>
 
-        // Dynamic Content Rotation (Every 6 hours)
-        const hour = now.getHours();
-        const rotationIndex = Math.floor(hour / 6); // 0, 1, 2, or 3
-        const content = dailyWisdom[rotationIndex];
-        
-        const qElem = document.getElementById('display-quran');
-        const mElem = document.getElementById('display-quote');
-        
-        qElem.innerText = content.q[currentLang];
-        mElem.innerText = content.m[currentLang];
-        
-        // Handle RTL for Arabic/Kurdish
-        if(currentLang === 'en') {
-            qElem.parentElement.classList.remove('rtl');
-        } else {
-            qElem.parentElement.classList.add('rtl');
-        }
+    <p>
+      <strong id="confirmedCoins">1,000</strong>
+      coins were added to the demo balance.
+    </p>
 
-        const countBadge = document.getElementById('countdown-badge');
-        const iftarBadge = document.getElementById('iftar-timer');
-        const qMsg = document.getElementById('quran-message');
+    <p class="demo-warning">
+      Simulation only — no real payment was processed.
+    </p>
 
-        if (!isRamadan) {
-            countBadge.innerText = `${diffDays} ${translations[currentLang].countdown}`;
-            iftarBadge.style.display = "none";
-            qMsg.innerText = translations[currentLang].startSoon;
-        } else {
-            const dayNum = Math.floor(Math.abs(diffMs) / (1000 * 60 * 60 * 24)) + 1;
-            countBadge.innerText = `${translations[currentLang].fasting} ${dayNum}`;
-            iftarBadge.style.display = "block";
-            qMsg.innerText = "";
+    <button class="done-button" onclick="closeConfirmation()">
+      Done
+    </button>
 
-            const [cH, cM] = [now.getHours(), now.getMinutes()];
-            const minsToIftar = (17 * 60 + 48) - (cH * 60 + cM);
-            if (minsToIftar > 0) {
-                iftarBadge.innerText = `⏳ Iftar in ${Math.floor(minsToIftar/60)}h ${minsToIftar%60}m`;
-            } else {
-                iftarBadge.innerText = "🍽️ Iftar Time!";
-            }
-        }
+  </div>
 
-        // Worship & Quran
-        let pagesToday = 0;
-        const list = document.getElementById('prayer-list');
-        list.innerHTML = '';
+</div>
 
-        prayers.forEach(p => {
-            const done = milTime >= p.military;
-            if (isRamadan && done) pagesToday += 4;
-            
-            list.innerHTML += `<div class="prayer-status">
-                <span>${p.name[currentLang]}</span>
-                <span class="${done ? 'status-done' : ''}">${done ? translations[currentLang].done : p.time}</span>
-            </div>`;
-        });
 
-        const totalPages = isRamadan ? ((Math.floor(Math.abs(diffMs) / (1000 * 60 * 60 * 24))) * 20) + pagesToday : 0;
-        document.getElementById('pages-count').innerText = Math.min(totalPages, 604);
-        document.getElementById('q-bar').style.width = (Math.min(totalPages, 604) / 604 * 100) + '%';
-    }
+<script src="script.js"></script>
 
-    function setLang(lang) {
-        currentLang = lang;
-        document.querySelectorAll('.lang-btn').forEach((b, i) => {
-            const btnLang = b.getAttribute('onclick').match(/'([^']+)'/)[1];
-            b.classList.toggle('active', btnLang === lang);
-        });
-        document.getElementById('t-quran').innerText = translations[lang].quran;
-        document.getElementById('t-pages').innerText = translations[lang].pages;
-        document.getElementById('t-worship').innerText = translations[lang].worship;
-        document.getElementById('dynamic-title').innerText = translations[lang].wisdom;
-        update();
-    }
-
-    setInterval(update, 1000);
-    update();
-</script>
 </body>
 </html>
