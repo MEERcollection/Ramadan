@@ -1,288 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coin Recharge Demo</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Coins - University Project</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <div class="logo-icon">♪</div>
-    <span>ClipTok</span>
-    <small>DEMO</small>
-  </div>
+<!-- UNIVERSITY PROJECT IDENTIFIER -->
+<div class="project-label">
+    UNIVERSITY PROJECT • NO REAL PAYMENTS
+</div>
 
-  <div class="search">
-    <input type="text" placeholder="Search">
-    <span>⌕</span>
-  </div>
+<header class="topbar">
 
-  <div class="header-right">
-    <button class="upload">＋ Upload</button>
-    <span class="header-icon">✈</span>
+    <div class="brand">
+        <div class="brand-mark">
+            <span class="cyan-note">♪</span>
+            <span class="red-note">♪</span>
+            <span class="black-note">♪</span>
+        </div>
 
-    <div class="message-icon">
-      ▢
-      <div class="notification">2</div>
+        <span class="brand-name">TikTok</span>
     </div>
 
-    <div class="profile-circle"></div>
-  </div>
+
+    <div class="main-search">
+        <input
+            type="text"
+            placeholder="Search"
+            id="mainSearch"
+        >
+
+        <!-- SEARCH ICON -->
+        <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.2" y1="16.2" x2="21" y2="21"></line>
+        </svg>
+    </div>
+
+
+    <div class="nav-actions">
+
+        <button class="upload-btn">
+
+            <svg viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+
+            Upload
+
+        </button>
+
+
+        <!-- SEND / INBOX STYLE ICON -->
+        <button class="icon-btn" aria-label="Send">
+
+            <svg viewBox="0 0 24 24">
+                <path d="M21 3L10 14"></path>
+                <path d="M21 3L14 21L10 14L3 10L21 3Z"></path>
+            </svg>
+
+        </button>
+
+
+        <!-- MESSAGE ICON -->
+        <button class="icon-btn message-button" aria-label="Messages">
+
+            <svg viewBox="0 0 24 24">
+                <path d="M4 5.5C4 4.1 5.1 3 6.5 3h11C18.9 3 20 4.1 20 5.5v9c0 1.4-1.1 2.5-2.5 2.5H11l-4.5 4V17C5.1 17 4 15.9 4 14.5v-9Z"></path>
+                <circle cx="8" cy="10" r="1"></circle>
+                <circle cx="12" cy="10" r="1"></circle>
+                <circle cx="16" cy="10" r="1"></circle>
+            </svg>
+
+            <span class="notification">2</span>
+
+        </button>
+
+
+        <div class="profile-avatar"></div>
+
+    </div>
+
 </header>
 
 
 <main>
 
-  <section class="card">
+    <section class="recharge-panel">
 
-    <div class="title-row">
-      <h1>Get Coins</h1>
+        <!-- TOP ROW -->
 
-      <button class="history-btn" onclick="openHistory()">
-        View transaction history
-      </button>
-    </div>
+        <div class="panel-heading">
+
+            <h1>Get Coins</h1>
 
 
-    <div class="account-section">
+            <!-- USERNAME SEARCH -->
 
-      <div class="account">
+            <div class="username-search-wrap">
 
-        <div class="avatar"></div>
+                <div class="username-search">
 
-        <div>
-          <div class="username">secretttttyyyy...</div>
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="16.2" y1="16.2" x2="21" y2="21"></line>
+                    </svg>
 
-          <div class="balance">
-            <span class="mini-coin">♪</span>
-            <span id="currentBalance">0</span>
-          </div>
+                    <input
+                        id="usernameInput"
+                        type="text"
+                        placeholder="Search username"
+                        autocomplete="off"
+                    >
+
+                    <button onclick="searchUsername()">
+                        Search
+                    </button>
+
+                </div>
+
+
+                <div id="searchResults" class="search-results"></div>
+
+            </div>
+
+
+            <button
+                class="history-link"
+                onclick="openHistory()"
+            >
+                View transaction history
+            </button>
+
         </div>
 
-      </div>
+
+        <!-- ACCOUNT -->
+
+        <div class="account-card">
+
+            <div class="account-info">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <div>
+
+                    <div
+                        class="username"
+                        id="selectedUsername"
+                    >
+                        secretttttyyyy...
+                    </div>
+
+                    <div class="coin-balance">
+
+                        <span class="small-coin">
+                            <span>♪</span>
+                        </span>
+
+                        <span id="balance">
+                            0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
-      <div class="invite">
-        <strong>Invite & Get Rewards ›</strong>
+            <div class="reward-info">
 
-        <div>
-          7ZWJC8BZ
-          <button class="copy" onclick="copyCode()">▢</button>
-        </div>
-      </div>
+                <strong>
+                    Invite &amp; Get Rewards
+                    <span class="arrow">›</span>
+                </strong>
 
-    </div>
+                <div class="invite-code">
 
+                    7ZWJC8BZ
 
-    <div class="recharge-title">
-      Recharge:
-      <span>Save around 25% with a lower service fee.</span>
-      ⓘ
-    </div>
+                    <button onclick="copyInviteCode()">
 
+                        <svg viewBox="0 0 24 24">
+                            <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                            <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                        </svg>
 
-    <div class="coin-grid">
+                    </button>
 
-      <button class="coin-card"
-              data-coins="30"
-              data-price="0.31"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 30
-        </div>
-        <div class="price">$0.31</div>
-      </button>
+                </div>
 
+            </div>
 
-      <button class="coin-card"
-              data-coins="100"
-              data-price="1.05"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 100
-        </div>
-        <div class="price">$1.05</div>
-      </button>
-
-
-      <button class="coin-card"
-              data-coins="200"
-              data-price="2.09"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 200
-        </div>
-        <div class="price">$2.09</div>
-      </button>
-
-
-      <button class="coin-card"
-              data-coins="350"
-              data-price="3.65"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 350
-        </div>
-        <div class="price">$3.65</div>
-      </button>
-
-
-      <button class="coin-card"
-              data-coins="500"
-              data-price="5.19"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 500
-        </div>
-        <div class="price">$5.19</div>
-      </button>
-
-
-      <button class="coin-card selected"
-              data-coins="1000"
-              data-price="10.39"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 1,000
-        </div>
-        <div class="price">$10.39</div>
-      </button>
-
-
-      <button class="coin-card"
-              data-coins="17500"
-              data-price="181.35"
-              onclick="selectPackage(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> 17,500
-        </div>
-        <div class="price">$181.35</div>
-      </button>
-
-
-      <button class="coin-card custom"
-              onclick="customCoins(this)">
-        <div class="coin-number">
-          <span class="coin">♪</span> Custom
         </div>
 
-        <div class="price">
-          Large amount supported
+
+        <!-- RECHARGE TEXT -->
+
+        <div class="recharge-heading">
+
+            <strong>Recharge:</strong>
+
+            <span>
+                Save around 25% with a lower third-party service fee.
+            </span>
+
+            <span class="info-icon">i</span>
+
         </div>
-      </button>
-
-    </div>
 
 
-    <div class="special-header">
-      <strong>Special offer ⓘ</strong>
+        <!-- COINS -->
 
-      <span>
-        5% cash back on your next order
-      </span>
-    </div>
+        <div class="coin-grid">
 
 
-    <div class="offer">
+            <button
+                class="coin-option"
+                data-coins="30"
+                data-price="0.31"
+                onclick="choosePackage(this)"
+            >
 
-      <div class="five">
-        5<sup>%</sup>
-      </div>
+                <div class="coin-main">
 
-      <div class="offer-text">
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
 
-        <strong>
-          Recharge once to unlock 5% cash back up to USD250
-          on your next order
-        </strong>
+                    <strong>30</strong>
 
-        <small>
-          From Invite & Get Rewards ›
-          &nbsp;&nbsp;
-          Default invitation code applied.
-          Change code ✎
-        </small>
+                </div>
 
-      </div>
+                <span class="coin-price">
+                    $0.31
+                </span>
 
-      <div class="check">✓</div>
-
-    </div>
+            </button>
 
 
-    <div class="payment">
 
-      <div class="payment-method">
-        Payment method
+            <button
+                class="coin-option"
+                data-coins="100"
+                data-price="1.05"
+                onclick="choosePackage(this)"
+            >
 
-        <span class="payment-logo">VISA</span>
-        <span class="payment-logo">MC</span>
-        <span class="payment-logo">DISC</span>
-      </div>
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>100</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $1.05
+                </span>
+
+            </button>
 
 
-      <div class="total">
-        Total
-        <strong id="totalPrice">$10.39</strong>
-      </div>
+
+            <button
+                class="coin-option"
+                data-coins="200"
+                data-price="2.09"
+                onclick="choosePackage(this)"
+            >
+
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>200</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $2.09
+                </span>
+
+            </button>
 
 
-      <button class="recharge-button" onclick="recharge()">
-        Recharge
-      </button>
 
-    </div>
+            <button
+                class="coin-option"
+                data-coins="350"
+                data-price="3.65"
+                onclick="choosePackage(this)"
+            >
 
-  </section>
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>350</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $3.65
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="coin-option"
+                data-coins="500"
+                data-price="5.19"
+                onclick="choosePackage(this)"
+            >
+
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>500</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $5.19
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="coin-option selected"
+                data-coins="1000"
+                data-price="10.39"
+                onclick="choosePackage(this)"
+            >
+
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>1,000</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $10.39
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="coin-option"
+                data-coins="17500"
+                data-price="181.35"
+                onclick="choosePackage(this)"
+            >
+
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong>17,500</strong>
+
+                </div>
+
+                <span class="coin-price">
+                    $181.35
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="coin-option"
+                id="customCard"
+                onclick="openCustomCoins()"
+            >
+
+                <div class="coin-main">
+
+                    <span class="tiktok-coin">
+                        <span>♪</span>
+                    </span>
+
+                    <strong id="customCoinTitle">
+                        Custom
+                    </strong>
+
+                </div>
+
+                <span
+                    class="coin-price"
+                    id="customCoinPrice"
+                >
+                    Large amount supported
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- OFFER -->
+
+        <div class="offer-heading">
+
+            <strong>
+                Special offer
+                <span class="info-icon">i</span>
+            </strong>
+
+            <span>
+                5% cash back on your next order
+            </span>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <div class="five-percent">
+                5<sup>%</sup>
+            </div>
+
+
+            <div class="offer-description">
+
+                <strong>
+                    Recharge once to unlock 5% cash back up to USD250 on your next order
+                </strong>
+
+                <div>
+                    From Invite &amp; Get Rewards
+                    &nbsp;›&nbsp;
+                    Default invitation code applied.
+                    Change code ✎
+                </div>
+
+            </div>
+
+
+            <div class="offer-check">
+                ✓
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT DISPLAY -->
+
+        <div class="payment-area">
+
+            <div class="payment-method">
+
+                Payment method
+
+                <span class="visa">
+                    VISA
+                </span>
+
+                <span class="mastercard">
+                    <i></i>
+                    <b></b>
+                </span>
+
+                <span class="discover">
+                    DISCOVER
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>Total</span>
+
+                <strong id="total">
+                    $10.39
+                </strong>
+
+            </div>
+
+
+            <button
+                class="recharge-btn"
+                onclick="recharge()"
+            >
+                Recharge
+            </button>
+
+        </div>
+
+    </section>
 
 </main>
 
 
-<div id="historyModal" class="modal">
 
-  <div class="modal-box">
+<!-- CUSTOM COINS MODAL -->
 
-    <button class="close" onclick="closeHistory()">×</button>
+<div
+    class="modal"
+    id="customModal"
+>
 
-    <h2>Transaction History</h2>
+    <div class="modal-content small-modal">
 
-    <div id="historyContent">
-      <p>No demo transactions yet.</p>
+        <button
+            class="modal-close"
+            onclick="closeCustomCoins()"
+        >
+            ×
+        </button>
+
+        <h2>Custom</h2>
+
+        <p>
+            Enter coin amount
+        </p>
+
+        <div class="custom-input">
+
+            <span class="tiktok-coin">
+                <span>♪</span>
+            </span>
+
+            <input
+                id="customAmount"
+                type="number"
+                min="1"
+                placeholder="Coin amount"
+            >
+
+        </div>
+
+        <button
+            class="modal-main-btn"
+            onclick="applyCustomCoins()"
+        >
+            Confirm
+        </button>
+
     </div>
-
-  </div>
 
 </div>
 
 
-<div id="confirmationModal" class="modal">
 
-  <div class="modal-box confirmation">
+<!-- SUCCESS -->
 
-    <button class="close" onclick="closeConfirmation()">×</button>
+<div
+    class="modal"
+    id="successModal"
+>
 
-    <div class="success-icon">✓</div>
+    <div class="modal-content success-modal">
 
-    <h2>Demo Recharge Complete</h2>
+        <button
+            class="modal-close"
+            onclick="closeSuccess()"
+        >
+            ×
+        </button>
 
-    <p>
-      <strong id="confirmedCoins">1,000</strong>
-      coins were added to the demo balance.
-    </p>
 
-    <p class="demo-warning">
-      Simulation only — no real payment was processed.
-    </p>
+        <div class="success-check">
+            ✓
+        </div>
 
-    <button class="done-button" onclick="closeConfirmation()">
-      Done
-    </button>
+        <h2>
+            Recharge successful
+        </h2>
 
-  </div>
+        <p>
+            <strong id="successCoins">
+                1,000
+            </strong>
+            coins added
+        </p>
+
+
+        <button
+            class="modal-main-btn"
+            onclick="closeSuccess()"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- HISTORY -->
+
+<div
+    class="modal"
+    id="historyModal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeHistory()"
+        >
+            ×
+        </button>
+
+        <h2>
+            Transaction history
+        </h2>
+
+        <div id="historyList">
+
+            <div class="empty-history">
+                No transactions yet.
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
